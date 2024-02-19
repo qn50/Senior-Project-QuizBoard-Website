@@ -1,0 +1,113 @@
+body{
+    background-color: #F1F5F8;
+}
+.homePageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #2E2E48; 
+  }
+  
+  .logo {
+    height: 30px;
+  }
+  
+  .navigation .navLinks {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 50px; 
+  }
+  
+  .navigation .navLinks a {
+    text-decoration: none;
+    color: #F1F5F8; 
+  }
+  .navigation .navLinks a:hover {
+    text-decoration: underline;
+  }
+
+  .btn-custom {
+    background-color: #2E2E48; 
+    border-color: #F1F5F8; 
+    color: #F1F5F8; 
+    width: 100px;
+  }
+
+  .btn-custom:hover {
+    background-color: #F1F5F8;
+    color: #2E2E48; 
+  }
+  
+  .dark_text{
+    color: #2E2E48;
+  }
+  .highlaghit_text{
+    color: #5269FF;
+    display: inline;
+  }
+
+  .home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+  }
+  
+  .hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px; 
+  }
+  
+  .text-content h1 {
+    font-size: 3.3rem; /* Adjust the size as needed */
+    color: #2E2E48; /* Your desired text color */
+    margin-bottom: 10px;
+  }
+  b{
+    color:#5269FF;
+  }
+  .subtitle {
+    font-size: 1.0rem; /* Adjust the size as needed */
+    color: #666; /* Your desired subtitle color */
+    margin-bottom: 30px;
+  }
+  
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; border-color: transparent; }
+  }
+  
+  .typing-effect {
+    border-right: 2px solid; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    width: 0; 
+    animation: typing 4s steps(40, end) forwards; 
+    font-family: 'Courier New', Courier, monospace;
+}
+  
+  @keyframes blink-caret {
+    50% { border-color: black; }
+  }
+
+  .btn-primary {
+    background-color: #2E2E48; /* Your button color */
+    color: #F1F5F8;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .btn-primary:hover {
+    background-color: #5269FF;
+    color: #2E2E48; 
+  }
+  .image-content img {
+    max-width: 100%;
+    height: auto;
+  }
