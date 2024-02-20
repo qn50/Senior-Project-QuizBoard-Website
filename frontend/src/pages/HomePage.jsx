@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <div>
       <header className="homePageHeader">
-        <img src={logo} alt="QuizBoard Logo" className="logo" />
+      <Link to="/"><img src={logo} alt="QuizBoard Logo" className="logo" /></Link>
         <nav className="navigation">
           <ul className="navLinks">
             <li>
