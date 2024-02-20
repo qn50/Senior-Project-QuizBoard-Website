@@ -24,7 +24,7 @@ const RegisterPage = () => {
             </p>
             </div>
           </div>
-          <div class="col-md-6 mx-auto">
+          <div class="col-md-6 mx-auto mt-5">
             <form>
               <div class="mb-3">
                 <div class="row g-2">
