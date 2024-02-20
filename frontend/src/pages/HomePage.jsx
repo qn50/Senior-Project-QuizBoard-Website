@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./../css/homePage.css";
 import logo from "./../assets/WhiteLogo.svg";
 import photo from "./../assets/homePagePhoto.svg";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
@@ -20,14 +21,14 @@ function HomePage() {
               <a href="#about-us">About us</a>
             </li>
             <li>
-              <a href="#login">
+              <Link to="/login">
                 <button
                   type="button"
                   class="btn btn-outline-primary btn-custom btn-custom:hover"
                 >
                   Login
                 </button>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -43,11 +44,11 @@ function HomePage() {
             <p className="subtitle typing-effect">
               We help you prepare Quizzes and Exams
             </p>
-            <a href="#register">
+            <Link to="/register">
               <button type="button" class="btn btn-primary">
                 Get Started
               </button>
-            </a>
+            </Link>
           </div>
           <div className="image-content">
             <img src={photo} alt="home page image" />
