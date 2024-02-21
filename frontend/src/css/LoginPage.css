@@ -1,5 +1,6 @@
 .navbar-custom {
   padding: 8px 25px 8px 30px;
+  
 }
 
 .text-color-custom {
@@ -34,4 +35,8 @@
 
 .height-30 {
   height: 30px;
+}
+
+.justify-between {
+  justify-content: space-between;
 }

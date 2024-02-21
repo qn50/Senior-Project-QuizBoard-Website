@@ -12,12 +12,18 @@ const LoginPage = () => {
     "
       >
         <div className="container-fluid navbar-custom">
-          <div className="collapse navbar-collapse" id="navbarText">
-            <img
-              src={BLogo}
-              alt="logo"
-              className="navbar-nav me-auto mb-2 mb-lg-0 height-30"
-            />
+          <div
+            className="collapse navbar-collapse justify-content-between"
+            id="navbarText"
+          >
+            <Link to="/">
+              <img
+                src={BLogo}
+                alt="QuizBoard Logo"
+                className="navbar-nav me-auto mb-2 mb-lg-0 height-30"
+              />
+            </Link>
+
             <div className="navbar-text">
               Don't have an account?
               <Link to="/register" className="text-decoration-none fw-bold ">
