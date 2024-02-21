@@ -1,0 +1,13 @@
+b{
+    color:#5269FF;
+  }
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.darkBlue{
+  color: #2E2E48;
+}
