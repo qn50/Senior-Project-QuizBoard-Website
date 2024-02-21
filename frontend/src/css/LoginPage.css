@@ -1,0 +1,37 @@
+.navbar-custom {
+  padding: 8px 25px 8px 30px;
+}
+
+.text-color-custom {
+  color: #2e2e48;
+}
+
+.login-page {
+  padding: 50px 170px;
+  width: auto;
+}
+
+.image-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.form-custom {
+  height: max-content;
+}
+
+.padding-10 {
+  padding: 10px;
+}
+
+.m-top-25 {
+  margin-top: 25px;
+}
+
+.m-top-10 {
+  margin-top: 10px;
+}
+
+.height-30 {
+  height: 30px;
+}

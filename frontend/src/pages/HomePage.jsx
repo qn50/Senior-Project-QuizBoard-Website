@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./../css/homePage.css";
-import logo from "./../assets/WhiteLogo.svg";
+import Wlogo from "./../assets/WhiteLogo.svg";
 import photo from "./../assets/homePagePhoto.svg";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <div>
       <header className="homePageHeader">
-        <img src={logo} alt="QuizBoard Logo" className="logo" />
+        <img src={Wlogo} alt="QuizBoard Logo" className="logo" />
         <nav className="navigation">
           <ul className="navLinks">
             <li>
