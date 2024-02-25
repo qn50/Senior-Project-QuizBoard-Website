@@ -1,3 +1,9 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
 .navbar-custom {
   padding: 8px 25px 8px 30px;
   
