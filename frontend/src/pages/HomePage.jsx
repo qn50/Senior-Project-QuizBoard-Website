@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./../css/homePage.css";
 import Wlogo from "./../assets/WhiteLogo.svg";
 import photo from "./../assets/homePagePhoto.svg";
 import { Link } from "react-router-dom";
 
 function HomePage() {
+
   return (
     <div>
       <header className="homePageHeader">
