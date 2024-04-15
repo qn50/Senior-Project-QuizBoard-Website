@@ -4,7 +4,7 @@ import "./../css/homePage.css";
 import { Link } from "react-router-dom";
 import logo from "./../assets/BlueLogo.svg";
 import axios from "axios";
-import Dashboard from "./StudentPages/Dashboard";
+import MyCourses from "./StudentPages/MyCourses";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -72,7 +72,7 @@ function RegisterPage() {
   if (currentUser) {
     return (
       <div>
-        <Dashboard />
+        <MyCourses />
       </div>
     );
   }

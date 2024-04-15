@@ -4,7 +4,7 @@ import "./../css/LoginPage.css";
 import { Link } from "react-router-dom";
 import loginPhoto from "../assets/LoginPhoto.svg";
 import axios from "axios";
-import Dashboard from "./StudentPages/Dashboard";
+import MyCourses from "./StudentPages/MyCourses";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -64,7 +64,7 @@ function LoginPage(){
   if (currentUser) {
     return (
       <div>
-        <Dashboard />
+        <MyCourses />
       </div>
     );
   }
@@ -131,7 +131,7 @@ function LoginPage(){
                   <a href="#ForgotPassword">Forgot password?</a>
                 </div>
               </div>
-              
+              <Link to="/MyCourses">
               {loginError && <div className="alert alert-danger" role="alert">{loginError}</div>}
               <button
                 type="submit"
@@ -139,6 +139,7 @@ function LoginPage(){
               >
                 Login
               </button>
+              </Link>
             </form>
           </div>
           <div className=" image-content">
