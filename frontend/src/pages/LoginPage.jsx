@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BLogo from "./../assets/BlueLogo.svg";
 import "./../css/LoginPage.css";
-import { Link } from "react-router-dom";
+import { Link,useNavigate  } from "react-router-dom";
 import loginPhoto from "../assets/LoginPhoto.svg";
 import axios from "axios";
 import MyCourses from "./StudentPages/MyCourses";
@@ -19,6 +19,7 @@ function LoginPage(){
   const [currentUser, setCurrentUser] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     client
@@ -43,6 +44,7 @@ function LoginPage(){
       }
     ).then(function(res) {
       setCurrentUser(true);
+      navigate("/MyCourses");
     }
     ).catch(function(error) {
       // Handle error here.
@@ -131,7 +133,7 @@ function LoginPage(){
                   <a href="#ForgotPassword">Forgot password?</a>
                 </div>
               </div>
-              <Link to="/MyCourses">
+             
               {loginError && <div className="alert alert-danger" role="alert">{loginError}</div>}
               <button
                 type="submit"
@@ -139,7 +141,7 @@ function LoginPage(){
               >
                 Login
               </button>
-              </Link>
+              
             </form>
           </div>
           <div className=" image-content">
