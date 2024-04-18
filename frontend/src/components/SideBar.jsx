@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import "./../css/SideBar.css";
 import WLogo from "./../assets/WhiteLogo.svg";
+import SLogo from "./../assets/shortLogo.svg";
 import dashBoardIcon from "./../assets/dashBoard.svg";
 import magicStickIcon from "./../assets/magicStick.svg";
 import settingsIcon from "./../assets/settings.svg";
@@ -21,6 +22,7 @@ const client = axios.create({
 function SideBar() {
   const [activeLink, setActiveLink] = useState("My Courses");
   const navigate = useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -36,9 +38,17 @@ function SideBar() {
     });
   }
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  }
+
   return (
-    <div className="sideBar-custom">
-      <img src={WLogo} alt="QuizBoard Logo" className="logo ResponsiveImage" />
+    <div className={`sideBar-custom ${isSidebarOpen ? '' : 'sideBar-hidden'}`}>
+
+      {isSidebarOpen && <img src={WLogo} alt="QuizBoard Logo" className="logo ResponsiveImage" />}
+      {!isSidebarOpen && <img src={SLogo} alt="QuizBoard Logo" className="logo hideImage" />}
+
+    
       <div className="nav-list">
         <Link
           to="/MyCourses"
@@ -50,7 +60,7 @@ function SideBar() {
           }
         >
           <img src={dashBoardIcon} alt="magi cStick icon" />
-          <span className=" fw-bolder m-width">My Courses</span>
+          {isSidebarOpen && <span className=" fw-bolder m-width">My Courses</span>}
         </Link>
         <Link
           to="/MyQuizzes"
@@ -62,7 +72,7 @@ function SideBar() {
           }
         >
           <img src={magicStickIcon} alt="magi cStick icon" />
-          <span className=" fw-bolder m-width">My Quizzes</span>
+          {isSidebarOpen && <span className=" fw-bolder m-width">My Quizzes</span>}
         </Link>
         <Link
           to="/Settings"
@@ -74,21 +84,20 @@ function SideBar() {
           }
         >
           <img src={settingsIcon} alt="magi cStick icon" />
-          <span className=" fw-bolder m-width">Settings</span>
+          {isSidebarOpen && <span className=" fw-bolder m-width">Settings</span>}
         </Link>
       </div>
       <div className="logoutHidecontainer">
 
-      <form onSubmit={e => submitLogout(e)}>
-        <button type="submit" className="btn btn-light">
-          <img src={logoutIcon} alt="logout icon" className="logoutIcon" />
-          <span className="fw-bolder colorPrimary">Logout</span>
-        </button>
+        <form onSubmit={e => submitLogout(e)}>
+          <button type="submit" className="btn btn-light">
+            <img src={logoutIcon} alt="logout icon" className="logoutIcon" />
+            {isSidebarOpen && <span className="fw-bolder colorPrimary">Logout</span>}
+          </button>
         </form>
 
-        <button className="hidebtn">
-          <FaAngleDoubleLeft className="hideIcon" />
-          <span>Hide</span>
+        <button className="hidebtn" onClick={toggleSidebar}>
+            <FaAngleDoubleLeft className={`hideIcon ${isSidebarOpen ? '' : 'rotateIcon'}`} />
         </button>
       </div>
     </div>

@@ -2,7 +2,7 @@
   background-color: #2e2e48;
   color: white;
   min-height: 100vb;
-  width: 17%;
+  width: 15%;
   border-radius: 20px;
   padding-top: 3rem;
   display: flex;
@@ -10,6 +10,23 @@
   /* justify-content: space-around; */
   align-items: center;
   font-size: medium;
+}
+
+.sideBar-hidden {
+  background-color: #2e2e48;
+  color: white;
+  min-height: 100vb;
+  width: 5%;
+  border-radius: 20px;
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: medium;
+}
+
+.rotateIcon {
+   transform: rotate(180deg); 
 }
 
 .colorPrimary {
@@ -20,11 +37,15 @@
   width: 100%;
 }
 
+.hideImage {
+  width: 100%;
+}
+
 .nav-list {
   display: flex;
   flex-direction: column;
   align-content: center;
-  padding-top: 50px;
+  padding-top: 15px;
   width: 100%;
 }
 
@@ -46,16 +67,16 @@
 }
 
 .logoutIcon {
-  padding: 3px 10px;
+  padding: 3px 8px;
 }
 
 .hideIcon {
-  margin-right: 10px;
+  align-items: center;
   font-size: 30px;
 }
 
 .logoutHidecontainer {
-  padding-top: 22em;
+  padding-top: 21em;
   gap: 1.2rem;
   display: flex;
   flex-direction: column;
