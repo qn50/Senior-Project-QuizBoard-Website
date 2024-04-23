@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import logo from "./../assets/BlueLogo.svg";
 import axios from "axios";
 import MyCourses from "./TeacherPages/MyCourses";
+import StudentDashboard from "./StudentPages/StudentDashboard";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -142,6 +143,7 @@ function RegisterPage() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              {/* 
               <fieldset class="mb-3">
                 <legend class="col-form-label pt-0">Your Role</legend>
                 <div class="form-check">
@@ -170,7 +172,7 @@ function RegisterPage() {
                     Student
                   </label>
                 </div>
-              </fieldset>
+              </fieldset>*/}
               <div class="d-grid">
                 {registrationError && (
                   <div className="alert alert-danger" role="alert">
