@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/CourseMain.css";
+import "../css/CourseMain.css";
 import { FaRegPlusSquare } from "react-icons/fa";
 
 const CourseMain = ({ CoursesNum }) => {

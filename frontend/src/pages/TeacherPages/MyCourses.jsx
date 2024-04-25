@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import SideBar from "./SideBar";
-import CourseMain from "./CourseMain";
-import SearchInput from "./SearchInput.jsx";
-import CourseCard from "./CourseCard.jsx";
-import SideBar from "../../components/SideBar";
+import CourseMain from "../../components/CourseMain.jsx";
+import SearchInput from "../../components/SearchInput.jsx";
+import CourseCard from "../../components/CourseCard.jsx";
+import SideBar from "../MyCoursesPage/SideBar.jsx";
 
 const MyCourses = () => {
   const courses = [

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/CourseCard.css";
+import "../css/CourseCard.css";
 import { FaEllipsisH } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
