@@ -1,0 +1,8 @@
+.item {
+  min-width: 24%;
+  flex-grow: 4;
+}
+
+.gap-10{
+    gap: 10px;
+}

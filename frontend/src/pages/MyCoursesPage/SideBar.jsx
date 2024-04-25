@@ -17,7 +17,11 @@ const SideBar = () => {
 
   return (
     <div className="sideBar-custom">
-      <img src={WLogo} alt="QuizBoard Logo" className="logo ResponsiveImage" />
+      <img
+        src={WLogo}
+        alt="QuizBoard Logo"
+        className="logo ResponsiveImage px-3"
+      />
       <div className="nav-list">
         <Link
           to=""
@@ -52,11 +56,11 @@ const SideBar = () => {
               : "text-decoration-none text-white nav-element"
           }
         >
-          <img src={settingsIcon} alt="magi cStick icon" />
+          <img src={settingsIcon} alt="magi Stick icon" />
           <span className=" fw-bolder m-width">Settings</span>
         </Link>
       </div>
-      <div className="logoutHidecontainer">
+      <div className="logoutHidecontainer px-3">
         <button type="submit" className="btn btn-light">
           <img src={logoutIcon} alt="logout icon" className="logoutIcon" />
           <span className="fw-bolder colorPrimary">Logout</span>
