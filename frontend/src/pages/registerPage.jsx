@@ -4,7 +4,8 @@ import "./../css/homePage.css";
 import { Link } from "react-router-dom";
 import logo from "./../assets/BlueLogo.svg";
 import axios from "axios";
-import Dashboard from "./StudentPages/Dashboard";
+import MyCourses from "./TeacherPages/MyCourses";
+import StudentDashboard from "./StudentPages/StudentDashboard";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -55,12 +56,15 @@ function RegisterPage() {
           .then(function (res) {
             setCurrentUser(true);
           });
-      }).catch(function (error) {
+      })
+      .catch(function (error) {
         // Handle registration error
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
-          const errorMessage = error.response.data.message || "An error occurred during registration.";
+          const errorMessage =
+            error.response.data.message ||
+            "An error occurred during registration.";
           setRegistrationError(errorMessage);
         } else {
           // The request was made but no response was received or an error occurred in setting up the request
@@ -72,7 +76,7 @@ function RegisterPage() {
   if (currentUser) {
     return (
       <div>
-        <Dashboard />
+        <MyCourses />
       </div>
     );
   }
@@ -139,6 +143,7 @@ function RegisterPage() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              {/* 
               <fieldset class="mb-3">
                 <legend class="col-form-label pt-0">Your Role</legend>
                 <div class="form-check">
@@ -161,16 +166,19 @@ function RegisterPage() {
                     name="role"
                     id="student"
                     value="STUDENT"
-                    
                     onChange={(e) => setRole(e.target.value)}
                   />
                   <label class="form-check-label" for="student">
                     Student
                   </label>
                 </div>
-              </fieldset>
+              </fieldset>*/}
               <div class="d-grid">
-              {registrationError && <div className="alert alert-danger" role="alert">{registrationError}</div>}
+                {registrationError && (
+                  <div className="alert alert-danger" role="alert">
+                    {registrationError}
+                  </div>
+                )}
                 <button type="submit" class="btn btn-primary">
                   Sign Up
                 </button>

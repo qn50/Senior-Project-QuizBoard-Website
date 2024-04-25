@@ -4,6 +4,7 @@ import SideBar from "./SideBar";
 import CourseMain from "./CourseMain";
 import SearchInput from "./SearchInput.jsx";
 import CourseCard from "./CourseCard.jsx";
+import SideBar from "../../components/SideBar";
 
 const MyCourses = () => {
   const courses = [

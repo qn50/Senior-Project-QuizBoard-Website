@@ -3,6 +3,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import Group, Permission
+from django.utils import timezone
 
 class Role(models.TextChoices):
     ADMIN = 'ADMIN', _('Admin')
@@ -64,3 +65,17 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 	def __str__(self):
 		return self.first_name
 	
+class Course(models.Model):
+    course_id = models.AutoField(primary_key=True)
+    course_name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(default=timezone.now)
+    teacher = models.ForeignKey(
+        AppUser,
+        on_delete=models.CASCADE,
+        limit_choices_to={'role': Role.TEACHER},
+        related_name='courses'
+    )
+    num_of_quizzes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.course_name
