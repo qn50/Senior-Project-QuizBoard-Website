@@ -38,7 +38,7 @@ const MyCourses = () => {
     <div className="d-flex ">
       <SideBar />
       <div className="w-100 flex-grow-1">
-        <CourseMain CoursesNum={filteredCourses.length} />
+        <CourseMain CoursesNum={filteredCourses.length} pageTitle={"Course"} />
         <SearchInput onSearch={onSearch} />
         <CourseCard course={filteredCourses} />
       </div>
