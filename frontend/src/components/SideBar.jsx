@@ -49,7 +49,7 @@ function SideBar() {
       {!isSidebarOpen && <img src={SLogo} alt="QuizBoard Logo" className="logo hideImage" />}
 
     
-      <div className="nav-list">
+      <div className="nav-list ">
         <Link
           to="/MyCourses"
           onClick={() => handleLinkClick("My Courses")}

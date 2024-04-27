@@ -17,12 +17,12 @@ const SideBar = () => {
 
   return (
     <div className="sideBar-custom">
-      <img
-        src={WLogo}
-        alt="QuizBoard Logo"
-        className="logo ResponsiveImage px-3"
-      />
       <div className="nav-list">
+        <img
+          src={WLogo}
+          alt="QuizBoard Logo"
+          className="logo ResponsiveImage px-3 mb-4"
+        />
         <Link
           to="/MyCourses"
           onClick={() => handleLinkClick("My Courses")}
@@ -65,7 +65,7 @@ const SideBar = () => {
           <img src={logoutIcon} alt="logout icon" className="logoutIcon" />
           <span className="fw-bolder colorPrimary">Logout</span>
         </button>
-        <button className="hidebtn">
+        <button className="hidebtn mb-5">
           <FaAngleDoubleLeft className="hideIcon" />
           <span>Hide</span>
         </button>

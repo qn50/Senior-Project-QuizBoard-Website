@@ -35,9 +35,12 @@ const MyQuizzes = () => {
   };
 
   return (
-    <div className="d-flex ">
+    <div className="d-flex" style={{ position: "relative", overflowX: "clip" }}>
       <SideBar />
-      <div className="w-100 flex-grow-1">
+      <div
+        className="flex-grow-1 "
+        style={{ position: "absolute", marginLeft: "12rem" }}
+      >
         <CourseMain CoursesNum={filteredCourses.length} pageTitle={"Quiz"} />
         <SearchInput onSearch={onSearch} />
         <QuizCard Quizzes={filteredCourses} />

@@ -1,15 +1,18 @@
 .sideBar-custom {
   background-color: #2e2e48;
   color: white;
-  min-height: 100vb;
+  height: 100vb;
   width: 15%;
   border-radius: 20px;
-  padding-top: 3rem;
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
+  justify-content: space-between;
   align-items: center;
   font-size: medium;
+  position: fixed;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .sideBar-hidden {
@@ -26,7 +29,7 @@
 }
 
 .rotateIcon {
-   transform: rotate(180deg); 
+  transform: rotate(180deg);
 }
 
 .colorPrimary {
@@ -76,7 +79,6 @@
 }
 
 .logoutHidecontainer {
-  padding-top: 21em;
   gap: 1.2rem;
   display: flex;
   flex-direction: column;

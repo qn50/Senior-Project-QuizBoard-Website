@@ -9,9 +9,9 @@ const printPageTitle = (pageTitle) => {
 
 const CourseMain = ({ CoursesNum, pageTitle }) => {
   return (
-    <div className="container  my-5 px-5">
+    <div className="container  my-5 px-5 ">
       <div className="d-flex justify-content-between">
-        <p className="fw-bolder mt-1 mb-0">
+        <p className="fw-bolder mt-1 mb-0 ">
           My {printPageTitle(pageTitle)}
           <span className="opacity-50 ">({CoursesNum})</span>
         </p>
