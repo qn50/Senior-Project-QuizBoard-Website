@@ -24,7 +24,7 @@ const SideBar = () => {
       />
       <div className="nav-list">
         <Link
-          to=""
+          to="/MyCourses"
           onClick={() => handleLinkClick("My Courses")}
           className={
             activeLink === "My Courses"
@@ -36,7 +36,7 @@ const SideBar = () => {
           <span className=" fw-bolder m-width">My Courses</span>
         </Link>
         <Link
-          to=""
+          to="/MyQuizzes"
           onClick={() => handleLinkClick("My Quizzes")}
           className={
             activeLink === "My Quizzes"
@@ -48,7 +48,7 @@ const SideBar = () => {
           <span className=" fw-bolder m-width">My Quizzes</span>
         </Link>
         <Link
-          to=""
+          to="/Settings"
           onClick={() => handleLinkClick("Settings")}
           className={
             activeLink === "Settings"

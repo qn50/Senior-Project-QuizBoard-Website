@@ -1,0 +1,10 @@
+.nav-pills .nav-link.active {
+  background-color: White;
+  color: black;
+}
+.buttonCustom{
+  color: black;
+}
+.width{
+  width: 100%;
+}
