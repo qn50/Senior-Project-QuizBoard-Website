@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SideBar from "../../components/SideBar";
+import SideBar from "../MyCoursesPage/SideBar.jsx";
 import "./../../css/Settings.css";
 import P1 from "./../../assets/Setting_P1.svg";
 import P2 from "./../../assets/Setting_P2.svg";
@@ -8,9 +8,12 @@ import P4 from "./../../assets/Setting_P4.svg";
 
 const Settings = () => {
   return (
-    <div className="d-flex">
+    <div
+      className="d-flex "
+      style={{ position: "relative", overflowX: "clip" }}
+    >
       <SideBar />
-      <div class="d-flex align-items-start container m-1 width">
+      <div class="d-flex p-absolute width-80 ml-14rem">
         <div
           class="nav flex-column nav-pills me-3 p-4 w-50 "
           id="v-pills-tab"
@@ -71,7 +74,7 @@ const Settings = () => {
             Change password{" "}
           </button>
         </div>
-        <div class="tab-content m-1 me-3 p-4 width" id="v-pills-tabContent">
+        <div class="tab-content m-1 me-3 p-4 width-80" id="v-pills-tabContent">
           <div
             class="tab-pane fade show active"
             id="v-pills-home"
@@ -167,12 +170,28 @@ const Settings = () => {
 
                   <div className="info-row p-2 m-1">
                     <div class="input-group flex-nowrap">
-                      <span class="input-group-text" id="addon-wrapping">New Password</span>
-                      <input type="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="addon-wrapping"></input>
+                      <span class="input-group-text" id="addon-wrapping">
+                        New Password
+                      </span>
+                      <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Password"
+                        aria-label="password"
+                        aria-describedby="addon-wrapping"
+                      ></input>
                     </div>
                     <div class="input-group flex-nowrap pt-4">
-                      <span class="input-group-text" id="addon-wrapping">Re-enter New Password</span>
-                      <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping"></input>
+                      <span class="input-group-text" id="addon-wrapping">
+                        Re-enter New Password
+                      </span>
+                      <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Password"
+                        aria-label="Password"
+                        aria-describedby="addon-wrapping"
+                      ></input>
                     </div>
                   </div>
                   <button type="button" class="btn btn-primary">
@@ -182,7 +201,6 @@ const Settings = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
