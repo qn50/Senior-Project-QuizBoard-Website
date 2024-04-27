@@ -8,3 +8,26 @@
 .width{
   width: 100%;
 }
+.nav-pills {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns items to the start of the flex container */
+}
+
+.nav-link {
+  display: flex;
+  align-items: center; /* Aligns items vertically in the center */
+}
+
+.nav-link img {
+  margin-right: 8px; /* Adjust as needed for spacing */
+}
+.btn-primary {
+  background-color: #2E2E48; /* Your button color */
+  color: #F1F5F8;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
