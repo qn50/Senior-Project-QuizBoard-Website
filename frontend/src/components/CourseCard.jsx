@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const CourseCard = ({ course }) => {
   return (
     <div className="container  my-4 px-5 d-flex flex-wrap gap-10">
-      {course.map((course) => (
-        <div key={course} className="card  border-0 item">
+      {course.map((course, index) => (
+        <div key={index} className="card  border-0 item">
           <div className="card-body">
             <h6 className="card-title fw-bolder d-flex justify-between">
               <div>COURSE</div>{" "}
