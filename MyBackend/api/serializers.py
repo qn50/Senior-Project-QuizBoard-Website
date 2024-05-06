@@ -18,13 +18,13 @@ class UserSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = ["course_id", "course_name", "created_at", "num_of_quizzes", "teacher"]
+        extra_kwargs = {"teacher": {"read_only": True}}
 
-
-class createCourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = '__all__'
+#class createCourseSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Course
+#        fields = '__all__'
 
 
 class QuizeSerializer(serializers.ModelSerializer):

@@ -1,5 +1,5 @@
 from .models import Course, Quize
-from .serializers import CourseSerializer, createCourseSerializer, QuizeSerializer, createQuizeSerializer
+from .serializers import CourseSerializer, QuizeSerializer, createQuizeSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,25 +11,48 @@ from rest_framework import generics
 from .serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
+class CourseListCreate(generics.ListCreateAPIView):
+    serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Course.objects.filter(teacher=user)
+    
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            serializer.save(teacher=self.request.user)
+        else:
+            print(serializer.errors)
+
+class CourseDelete(generics.DestroyAPIView):
+    serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Course.objects.filter(teacher=user)
+    
+
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
-    
-@api_view()
-def CourseListView(request):
-    queryset = Course.objects.all()
-    serializer = CourseSerializer(queryset, many=True)
-    return Response(serializer.data)
+
+#@api_view()
+#def CourseListView(request):
+#    queryset = Course.objects.all()
+#    serializer = CourseSerializer(queryset, many=True)
+#    return Response(serializer.data)
 
 
-@api_view(['POST'])
-def createCourseView(request):
-    if request.method == 'POST':
-        serializer = CourseSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+#@api_view(['POST'])
+#def createCourseView(request):
+#    if request.method == 'POST':
+#        serializer = CourseSerializer(data=request.data)
+#        serializer.is_valid(raise_exception=True)
+#        serializer.save()
+#        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view()
