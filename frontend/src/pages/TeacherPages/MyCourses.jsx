@@ -1,34 +1,42 @@
 import React from "react";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput.jsx";
 import CourseCard from "../../components/CourseCard.jsx";
 import SideBar from "../MyCoursesPage/SideBar.jsx";
 import "../../css/MyCourses.css";
 
+const client = axios.create({
+  baseURL: "http://127.0.0.1:8000",
+});
+
 const MyCourses = () => {
-  const courses = [
-    "CPCS-214",
-    "CPCS-222",
-    "CPCS-221",
-    "CPCS-201",
-    "CPCS-202",
-    "CPCS-203",
-    "CPCS-399",
-    "CPCS-310",
-    "CPCS-500",
-    "CPCS-100",
-    "CPCS-200",
-    "CPCS-400",
-    "CPCS-240",
-  ];
-  const [filteredCourses, setFilteredCourses] = useState(courses);
+  const tempcourses = [];
+  const [Courses, setCourses] = useState([]);
+
+  const [filteredCourses, setFilteredCourses] = useState([]);
+
+  useEffect(() => {
+    client
+      .get("/api/courses")
+      .then((res) => {
+        res.data.map((course) => {
+          tempcourses[course.course_id - 1] = course.course_name;
+        });
+        setCourses(tempcourses);
+        setFilteredCourses(tempcourses);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   const onSearch = (searchText) => {
     if (searchText === "") {
-      setFilteredCourses(courses);
+      setFilteredCourses(Courses);
     } else {
-      const filtered = courses.filter((item) => {
+      const filtered = Courses.filter((item) => {
         return item.toLowerCase().includes(searchText.toLowerCase());
       });
       setFilteredCourses(filtered);
@@ -64,11 +72,14 @@ const MyCourses = () => {
               id="quizBtnModal"
               data-bs-backdrop="static"
               data-bs-keyboard="false"
-              tabindex="-1"
+              tabIndex="-1"
               aria-labelledby="quizBtnModalLabel"
               aria-hidden="true"
             >
-              <form action="">
+              <form
+                action="http://127.0.0.1:8000/api/courses/create"
+                method="POST"
+              >
                 <div className="modal-dialog modal-dialog-scrollable">
                   <div className="modal-content">
                     <div className="modal-header">
@@ -92,6 +103,7 @@ const MyCourses = () => {
                             type="text"
                             aria-label="First name"
                             className="form-control"
+                            name="courseName"
                           />
                         </div>
                       </div>
@@ -104,7 +116,7 @@ const MyCourses = () => {
                       >
                         Close
                       </button>
-                      <button type="button" className="btn btn-dark btn-custom">
+                      <button type="submit" className="btn btn-dark btn-custom">
                         Create
                       </button>
                     </div>
