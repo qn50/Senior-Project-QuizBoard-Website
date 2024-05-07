@@ -18,7 +18,7 @@ class Quize(models.Model):
     Quize_id = models.AutoField(primary_key=True)
     Quize_name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
-    course_name = models.CharField(max_length=100)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="Quizzes")
 
     def __str__(self):
         return self.Quize_name

@@ -21,19 +21,25 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = ["course_id", "course_name", "created_at", "num_of_quizzes", "teacher"]
         extra_kwargs = {"teacher": {"read_only": True}}
 
+class QuizSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quize
+        fields = ["Quize_id", "Quize_name", "created_at", "course_id"]
+        extra_kwargs = {"course_id": {"read_only": True}}
+
 #class createCourseSerializer(serializers.ModelSerializer):
 #    class Meta:
 #        model = Course
 #        fields = '__all__'
 
 
-class QuizeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Quize
-        fields = '__all__'
+#class QuizeSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Quize
+#        fields = '__all__'
 
 
-class createQuizeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Quize
-        fields = ['Quize_name', 'course_name']
+#class createQuizeSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Quize
+#        fields = ['Quize_name', 'course_name']
