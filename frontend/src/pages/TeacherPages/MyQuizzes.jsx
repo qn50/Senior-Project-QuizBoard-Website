@@ -27,7 +27,7 @@ const MyQuizzes = () => {
   const [Quize_name, setQuize_name] = useState([]);
   const [course_id, setcourse_id] = useState([]);
 
-  const [filteredQuizzes, setFilteredQuizzes] = useState(quizzes);
+  const [filteredQuizzes, setFilteredQuizzes] = useState(courses);
 
   useEffect(() => {
     getQuizzes();
@@ -69,9 +69,9 @@ const MyQuizzes = () => {
 
   const onSearch = (searchText) => {
     if (searchText === "") {
-      setFilteredQuizzes(quizzes);
+      setFilteredQuizzes(courses);
     } else {
-      const filtered = quizzes.filter((item) => {
+      const filtered = courses.filter((item) => {
         return item.toLowerCase().includes(searchText.toLowerCase());
       });
       setFilteredQuizzes(filtered);

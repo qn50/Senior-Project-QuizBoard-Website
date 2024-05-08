@@ -11,8 +11,7 @@ class QuizListCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        course = self.request.Course
-        return Quize.objects.filter(course_id=course)
+        return Quize.objects.all()
 
     def perform_create(self, serializer):
         if serializer.is_valid():
