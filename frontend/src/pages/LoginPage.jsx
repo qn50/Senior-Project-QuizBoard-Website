@@ -3,73 +3,32 @@ import BLogo from "./../assets/BlueLogo.svg";
 import "./../css/LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import loginPhoto from "../assets/LoginPhoto.svg";
-import axios from "axios";
 import MyCourses from "./TeacherPages/MyCourses";
-
-axios.defaults.xsrfCookieName = "csrftoken";
-axios.defaults.xsrfHeaderName = "X-CSRFToken";
-axios.defaults.withCredentials = true;
-
-const client = axios.create({
-  baseURL: "http://127.0.0.1:8000",
-});
+//
+import api from "../api";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 
 function LoginPage() {
-  const [loginError, setLoginError] = useState("");
-  const [currentUser, setCurrentUser] = useState();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    client
-      .get("/api/user")
-      .then(function (res) {
-        setCurrentUser(true);
-      })
-      .catch(function (error) {
-        setCurrentUser(false);
-      });
-  }, []);
-
-  function submitLogin(e) {
+  const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
-    setLoginError("");
 
-    client
-      .post("/api/login", {
-        email: email,
-        password: password,
-      })
-      .then(function (res) {
-        setCurrentUser(true);
-        navigate("/MyCourses");
-      })
-      .catch(function (error) {
-        // Handle error here.
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          const errorMessage =
-            error.response.data.message || "Invalid email or password";
-          setLoginError(errorMessage);
-        } else if (error.request) {
-          // The request was made but no response was received
-          setLoginError("The request was made but no response was received");
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          setLoginError("Error in setting up the request");
-        }
-      });
-  }
-
-  if (currentUser) {
-    return (
-      <div>
-        <MyCourses />
-      </div>
-    );
-  }
+    try {
+      const res = await api.post("/api/token/", { username, password });
+      localStorage.setItem(ACCESS_TOKEN, res.data.access);
+      localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+      navigate("/myCourses");
+    } catch (error) {
+      alert(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -95,23 +54,20 @@ function LoginPage() {
               <div className="fs-4 fw-normal">Login into your account</div>
               <br />
             </h1>
-            <form className="form-custom" onSubmit={(e) => submitLogin(e)}>
+            <form className="form-custom" onSubmit={handleSubmit}>
               <div className="mb-3">
                 <input
-                  type="email"
+                  type="text"
                   className="form-control padding-10"
-                  id="InputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="mb-3">
                 <input
                   type="password"
                   className="form-control padding-10 m-top-10"
-                  id="InputPassword1"
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -125,7 +81,7 @@ function LoginPage() {
                     className="form-check-input"
                     id="Check1"
                   />
-                  <label className="form-check-label " for="Check1">
+                  <label className="form-check-label " htmlFor="Check1">
                     Remember me
                   </label>
                 </div>
@@ -134,11 +90,6 @@ function LoginPage() {
                 </div>
               </div>
 
-              {loginError && (
-                <div className="alert alert-danger" role="alert">
-                  {loginError}
-                </div>
-              )}
               <button
                 type="submit"
                 className="btn btn-primary container-fluid m-top-25"

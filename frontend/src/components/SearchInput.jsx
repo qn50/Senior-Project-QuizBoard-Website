@@ -5,12 +5,7 @@ const SearchInput = ({ onSearch }) => {
   const ref = useRef(null);
 
   return (
-    <form
-      onChange={(event) => {
-        event.preventDefault();
-        if (ref.current) onSearch(ref.current.value);
-      }}
-    >
+    <form>
       <div className="container  mt-5 px-5">
         <div
           className="form-outline bg-white rounded d-flex p-1"
@@ -23,6 +18,9 @@ const SearchInput = ({ onSearch }) => {
             placeholder="Search"
             aria-label="Search"
             ref={ref}
+            onChange={(e) => {
+              onSearch(e.target.value);
+            }}
           />
           <button
             id="search-button"

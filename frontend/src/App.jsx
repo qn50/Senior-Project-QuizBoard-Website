@@ -1,12 +1,41 @@
-import React from 'react';
-import HelloWorld from './HelloWorld';
-import HomePage from './pages/HomePage';
+import React from "react";
+import HomePage from "./pages/HomePage";
+import Login from "./pages/LoginPage";
+import Register from "./pages/registerPage";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import NotFound from "./pages/TeacherPages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
+import MyCourses from "./pages/TeacherPages/MyCourses";
+
+function Logout() {
+  localStorage.clear();
+  return <Navigate to="/login" />;
+}
+
+function RegisterAndLogout() {
+  localStorage.clear();
+  return <Register />;
+}
 
 function App() {
   return (
-    <div>
-      <HomePage />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/myCourses"
+          element={
+            <ProtectedRoute>
+              <MyCourses />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/register" element={<RegisterAndLogout />} />
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

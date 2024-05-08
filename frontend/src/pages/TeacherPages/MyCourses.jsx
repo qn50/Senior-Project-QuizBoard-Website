@@ -6,31 +6,53 @@ import SearchInput from "../../components/SearchInput.jsx";
 import CourseCard from "../../components/CourseCard.jsx";
 import SideBar from "../MyCoursesPage/SideBar.jsx";
 import "../../css/MyCourses.css";
-
-const client = axios.create({
-  baseURL: "http://127.0.0.1:8000",
-});
+import api from "../../api";
 
 const MyCourses = () => {
   const tempcourses = [];
   const [Courses, setCourses] = useState([]);
+  const [courseCreateInput, setCourseCreateInput] = useState("");
+  const [searchText, setSearchText] = useState("");
 
-  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [filteredCourses, setFilteredCourses] = useState([Courses]);
 
   useEffect(() => {
-    client
-      .get("/api/courses")
-      .then((res) => {
-        res.data.map((course) => {
-          tempcourses[course.course_id - 1] = course.course_name;
-        });
-        setCourses(tempcourses);
-        setFilteredCourses(tempcourses);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    getCourses();
   }, []);
+
+  const getCourses = () => {
+    api
+      .get("/api/courses/")
+      .then((res) => res.data)
+      .then((data) => {
+        setCourses(data);
+        console.log(data);
+      })
+      .catch((err) => alert(err));
+  };
+
+  const deleteCourse = (id) => {
+    api
+      .delete(`/api/courses/delete/${id}/`)
+      .then((res) => {
+        if (res.status === 204) alert("Course deleted!");
+        else alert("Failed to delete Course.");
+        getCourses();
+      })
+      .catch((error) => alert(error));
+  };
+
+  const createCourse = (e) => {
+    e.preventDefault();
+    api
+      .post("/api/courses/", { courseCreateInput })
+      .then((res) => {
+        if (res.status === 201) alert("Course created!");
+        else alert("Failed to make Course.");
+        getCourses();
+      })
+      .catch((err) => alert(err));
+  };
 
   const onSearch = (searchText) => {
     if (searchText === "") {
@@ -76,10 +98,7 @@ const MyCourses = () => {
               aria-labelledby="quizBtnModalLabel"
               aria-hidden="true"
             >
-              <form
-                action="http://127.0.0.1:8000/api/courses/create"
-                method="POST"
-              >
+              <form onSubmit={createCourse}>
                 <div className="modal-dialog modal-dialog-scrollable">
                   <div className="modal-content">
                     <div className="modal-header">
@@ -104,6 +123,7 @@ const MyCourses = () => {
                             aria-label="First name"
                             className="form-control"
                             name="courseName"
+                            v
                           />
                         </div>
                       </div>
@@ -127,8 +147,8 @@ const MyCourses = () => {
           </div>
           <div className="container"></div>
         </div>
-        <SearchInput onSearch={onSearch} />
-        <CourseCard course={filteredCourses} />
+        {/* <SearchInput onSearch={onSearch} /> */}
+        <CourseCard courses={Courses} />
       </div>
     </div>
   );
