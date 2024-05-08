@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
+
 class QuizListCreate(generics.ListCreateAPIView):
     serializer_class = QuizSerializer
     permission_classes = [IsAuthenticated]
@@ -12,12 +13,13 @@ class QuizListCreate(generics.ListCreateAPIView):
     def get_queryset(self):
         course = self.request.Course
         return Quize.objects.filter(course_id=course)
-    
+
     def perform_create(self, serializer):
         if serializer.is_valid():
             serializer.save(course_id=self.request.Course)
         else:
             print(serializer.errors)
+
 
 class QuizDelete(generics.DestroyAPIView):
     serializer_class = QuizSerializer
@@ -26,7 +28,8 @@ class QuizDelete(generics.DestroyAPIView):
     def get_queryset(self):
         course = self.request.Course
         return Quize.objects.filter(course_id=course)
-    
+
+
 class CourseListCreate(generics.ListCreateAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated]
@@ -34,12 +37,13 @@ class CourseListCreate(generics.ListCreateAPIView):
     def get_queryset(self):
         user = self.request.user
         return Course.objects.filter(teacher=user)
-    
+
     def perform_create(self, serializer):
         if serializer.is_valid():
             serializer.save(teacher=self.request.user)
         else:
             print(serializer.errors)
+
 
 class CourseDelete(generics.DestroyAPIView):
     serializer_class = CourseSerializer
@@ -48,22 +52,22 @@ class CourseDelete(generics.DestroyAPIView):
     def get_queryset(self):
         user = self.request.user
         return Course.objects.filter(teacher=user)
-    
+
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
-#@api_view()
-#def CourseListView(request):
+# @api_view()
+# def CourseListView(request):
 #    queryset = Course.objects.all()
 #    serializer = CourseSerializer(queryset, many=True)
 #    return Response(serializer.data)
 
 
-#@api_view(['POST'])
-#def createCourseView(request):
+# @api_view(['POST'])
+# def createCourseView(request):
 #    if request.method == 'POST':
 #        serializer = CourseSerializer(data=request.data)
 #        serializer.is_valid(raise_exception=True)
@@ -71,15 +75,15 @@ class CreateUserView(generics.CreateAPIView):
 #        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-#@api_view()
-#def QuizeListView(request):
+# @api_view()
+# def QuizeListView(request):
 #    queryset = Quize.objects.all()
 #    serializer = QuizeSerializer(queryset, many=True)
 #    return Response(serializer.data)
 
 
-#@api_view(['POST'])
-#def createQuizeView(request):
+# @api_view(['POST'])
+# def createQuizeView(request):
 #    if request.method == 'POST':
 #        serializer = createQuizeSerializer(data=request.data)
 #        serializer.is_valid(raise_exception=True)

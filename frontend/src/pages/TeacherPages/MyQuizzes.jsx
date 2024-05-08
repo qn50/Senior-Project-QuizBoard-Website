@@ -1,10 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput.jsx";
 import SideBar from "../MyCoursesPage/SideBar.jsx";
 import QuizCard from "../../components/QuizCard.jsx";
 import "../../css/MyQuizzes.css";
+import api from "../../api";
 
 const MyQuizzes = () => {
   const courses = [
@@ -22,16 +23,58 @@ const MyQuizzes = () => {
     "CPCS-400",
     "CPCS-240",
   ];
-  const [filteredCourses, setFilteredCourses] = useState(courses);
+  const [quizzes, setquizzes] = useState([]);
+  const [Quize_name, setQuize_name] = useState([]);
+  const [course_id, setcourse_id] = useState([]);
+
+  const [filteredQuizzes, setFilteredQuizzes] = useState(quizzes);
+
+  useEffect(() => {
+    getQuizzes();
+  }, []);
+
+  const getQuizzes = () => {
+    api
+      .get("/api/quizzes/")
+      .then((res) => res.data)
+      .then((data) => {
+        setquizzes(data);
+        console.log(data);
+      })
+      .catch((err) => alert(err));
+  };
+
+  const deleteQuiz = (id) => {
+    api
+      .delete(`/api/quizzes/delete/${id}/`)
+      .then((res) => {
+        if (res.status === 204) alert("Quiz deleted!");
+        else alert("Failed to delete Quiz.");
+        getQuizzes();
+      })
+      .catch((error) => alert(error));
+  };
+
+  const createQuize = (e) => {
+    e.preventDefault();
+    api
+      .post("/api/quizzes/", { course_name })
+      .then((res) => {
+        if (res.status === 201) alert("Quiz created!");
+        else alert("Failed to make Quiz.");
+        getQuizzes();
+      })
+      .catch((err) => alert(err));
+  };
 
   const onSearch = (searchText) => {
     if (searchText === "") {
-      setFilteredCourses(courses);
+      setFilteredQuizzes(quizzes);
     } else {
-      const filtered = courses.filter((item) => {
+      const filtered = quizzes.filter((item) => {
         return item.toLowerCase().includes(searchText.toLowerCase());
       });
-      setFilteredCourses(filtered);
+      setFilteredQuizzes(filtered);
     }
   };
 
@@ -43,7 +86,7 @@ const MyQuizzes = () => {
           <div className="d-flex justify-content-between">
             <p className="fw-bolder mt-1 mb-0 ">
               My Quizzes
-              <span className="opacity-50 ">({filteredCourses.length})</span>
+              <span className="opacity-50 ">({filteredQuizzes.length})</span>
             </p>
 
             <button
@@ -61,7 +104,7 @@ const MyQuizzes = () => {
               id="quizBtnModal"
               data-bs-backdrop="static"
               data-bs-keyboard="false"
-              tabindex="-1"
+              tabIndex="-1"
               aria-labelledby="quizBtnModalLabel"
               aria-hidden="true"
             >
@@ -87,7 +130,7 @@ const MyQuizzes = () => {
                     <div className="container">
                       <div className="mb-3">
                         <label
-                          for="exampleFormControlTextarea1"
+                          htmlFor="exampleFormControlTextarea1"
                           className="form-label"
                         >
                           Quize Content
@@ -100,7 +143,7 @@ const MyQuizzes = () => {
                       </div>
                       <p className="text-center">--- OR ---</p>
                       <div className="mb-3">
-                        <label for="formFile" className="form-label ">
+                        <label htmlFor="formFile" className="form-label ">
                           Upload File
                         </label>
                         <input
@@ -131,7 +174,7 @@ const MyQuizzes = () => {
           <div className="container"></div>
         </div>
         <SearchInput onSearch={onSearch} />
-        <QuizCard Quizzes={filteredCourses} />
+        <QuizCard Quizzes={filteredQuizzes} />
       </div>
     </div>
   );

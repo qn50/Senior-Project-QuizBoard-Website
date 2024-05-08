@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput.jsx";
@@ -11,7 +10,7 @@ import api from "../../api";
 const MyCourses = () => {
   const tempcourses = [];
   const [Courses, setCourses] = useState([]);
-  const [courseCreateInput, setCourseCreateInput] = useState("");
+  const [course_name, setCourse_name] = useState("");
   const [searchText, setSearchText] = useState("");
 
   const [filteredCourses, setFilteredCourses] = useState([Courses]);
@@ -45,7 +44,7 @@ const MyCourses = () => {
   const createCourse = (e) => {
     e.preventDefault();
     api
-      .post("/api/courses/", { courseCreateInput })
+      .post("/api/courses/", { course_name })
       .then((res) => {
         if (res.status === 201) alert("Course created!");
         else alert("Failed to make Course.");
@@ -76,7 +75,7 @@ const MyCourses = () => {
           <div className="d-flex justify-content-between">
             <p className="fw-bolder mt-1 mb-0 ">
               My Courses
-              <span className="opacity-50 ">({filteredCourses.length})</span>
+              <span className="opacity-50 ">({Courses.length})</span>
             </p>
 
             <button
@@ -122,8 +121,12 @@ const MyCourses = () => {
                             type="text"
                             aria-label="First name"
                             className="form-control"
-                            name="courseName"
-                            v
+                            name="course_name"
+                            id="course_name"
+                            onChange={(e) => {
+                              setCourse_name(e.target.value);
+                            }}
+                            value={course_name}
                           />
                         </div>
                       </div>
@@ -136,7 +139,11 @@ const MyCourses = () => {
                       >
                         Close
                       </button>
-                      <button type="submit" className="btn btn-dark btn-custom">
+                      <button
+                        type="submit"
+                        className="btn btn-dark btn-custom"
+                        data-bs-dismiss="modal"
+                      >
                         Create
                       </button>
                     </div>
@@ -148,7 +155,7 @@ const MyCourses = () => {
           <div className="container"></div>
         </div>
         {/* <SearchInput onSearch={onSearch} /> */}
-        <CourseCard courses={Courses} />
+        <CourseCard courses={Courses} onDelete={deleteCourse} />
       </div>
     </div>
   );

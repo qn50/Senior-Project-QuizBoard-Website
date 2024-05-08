@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import NotFound from "./pages/TeacherPages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MyCourses from "./pages/TeacherPages/MyCourses";
+import MyQuizzes from "./pages/TeacherPages/MyQuizzes";
 
 function Logout() {
   localStorage.clear();
@@ -26,6 +27,14 @@ function App() {
           element={
             <ProtectedRoute>
               <MyCourses />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/myQuizzes"
+          element={
+            <ProtectedRoute>
+              <MyQuizzes />
             </ProtectedRoute>
           }
         />
