@@ -8,13 +8,14 @@ const QuizCard = ({ Quizzes }) => {
     <div className="container  my-4 px-5 d-flex flex-wrap gap-5">
       {Quizzes.map((Quiz) => (
         <div
-          key={Quiz}
+          key={Quiz.Quize_id}
           className="card  border-0 item"
           style={{ minWidth: "40%", flexGrow: "4" }}
         >
           <div className="card-body">
             <h6 className="card-title fw-bolder d-flex justify-between">
-              <div></div> <div className="opacity-50">CREATED: 2023-11-12</div>
+              <div>QUIZ</div>{" "} 
+              <div className="opacity-50">CREATED: 2023-11-12</div>
               <div>
                 <FaEllipsisH className="opacity-50" />
               </div>

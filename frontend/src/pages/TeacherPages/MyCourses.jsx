@@ -8,7 +8,6 @@ import "../../css/MyCourses.css";
 import api from "../../api";
 
 const MyCourses = () => {
-  const tempcourses = [];
   const [Courses, setCourses] = useState([]);
   const [course_name, setCourse_name] = useState("");
   const [searchText, setSearchText] = useState("");

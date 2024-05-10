@@ -15,7 +15,7 @@ class QuizListCreate(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         if serializer.is_valid():
-            serializer.save(course_id=self.request.Course)
+            serializer.save()
         else:
             print(serializer.errors)
 

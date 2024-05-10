@@ -8,29 +8,17 @@ import "../../css/MyQuizzes.css";
 import api from "../../api";
 
 const MyQuizzes = () => {
-  const courses = [
-    "Data Base Q1",
-    "ML",
-    "AI",
-    "Data Base Q2",
-    "Data Base Q3",
-    "CPCS-203",
-    "CPCS-399",
-    "CPCS-310",
-    "CPCS-500",
-    "CPCS-100",
-    "CPCS-200",
-    "CPCS-400",
-    "CPCS-240",
-  ];
+
+  const [Courses, setCourses] = useState([]);
   const [quizzes, setquizzes] = useState([]);
   const [Quize_name, setQuize_name] = useState([]);
   const [course_id, setcourse_id] = useState([]);
 
-  const [filteredQuizzes, setFilteredQuizzes] = useState(courses);
+  const [filteredQuizzes, setFilteredQuizzes] = useState([quizzes]);
 
   useEffect(() => {
     getQuizzes();
+    getCourses();
   }, []);
 
   const getQuizzes = () => {
@@ -44,21 +32,32 @@ const MyQuizzes = () => {
       .catch((err) => alert(err));
   };
 
-  const deleteQuiz = (id) => {
+  const getCourses = () => {
     api
-      .delete(`/api/quizzes/delete/${id}/`)
-      .then((res) => {
-        if (res.status === 204) alert("Quiz deleted!");
-        else alert("Failed to delete Quiz.");
-        getQuizzes();
+      .get("/api/courses/")
+      .then((res) => res.data)
+      .then((data) => {
+        setCourses(data);
+        console.log(data);
       })
-      .catch((error) => alert(error));
+      .catch((err) => alert(err));
   };
+
+  // const deleteQuiz = (id) => {
+  //   api
+  //     .delete(`/api/quizzes/delete/${id}/`)
+  //     .then((res) => {
+  //       if (res.status === 204) alert("Quiz deleted!");
+  //       else alert("Failed to delete Quiz.");
+  //       getQuizzes();
+  //     })
+  //     .catch((error) => alert(error));
+  // };
 
   const createQuize = (e) => {
     e.preventDefault();
     api
-      .post("/api/quizzes/", { course_name })
+      .post("/api/quizzes/", { Quize_name, course_id })
       .then((res) => {
         if (res.status === 201) alert("Quiz created!");
         else alert("Failed to make Quiz.");
@@ -69,9 +68,9 @@ const MyQuizzes = () => {
 
   const onSearch = (searchText) => {
     if (searchText === "") {
-      setFilteredQuizzes(courses);
+      setFilteredQuizzes(quizzes);
     } else {
-      const filtered = courses.filter((item) => {
+      const filtered = quizzes.filter((item) => {
         return item.toLowerCase().includes(searchText.toLowerCase());
       });
       setFilteredQuizzes(filtered);
@@ -86,7 +85,7 @@ const MyQuizzes = () => {
           <div className="d-flex justify-content-between">
             <p className="fw-bolder mt-1 mb-0 ">
               My Quizzes
-              <span className="opacity-50 ">({filteredQuizzes.length})</span>
+              <span className="opacity-50 ">({quizzes.length})</span>
             </p>
 
             <button
@@ -123,11 +122,38 @@ const MyQuizzes = () => {
                   </div>
 
                   <div className="modal-body">
-                    <button className="p-2 bg-blue text-white rounded w-100 mb-4">
-                      Paste Text or Upload File
-                    </button>
+                  <span className="input-group-text btn btn-dark btn-custom bg-blue text-white mb-2">
+                            Quiz Name
+                          </span>
+                          <input
+                            type="text"
+                            aria-label="First name"
+                            className="form-control"
+                            name="quiz_name"
+                            id="quiz_name"
+                            onChange={(e) => {
+                              setQuize_name(e.target.value);
+                            }}
+                            value={Quize_name}
+                            required
+                          />
 
                     <div className="container">
+                    <label htmlFor="courseSelect" className="form-label">Select Course</label>
+                      <select
+                        className="form-select"
+                        id="courseSelect"
+                        value={course_id}
+                        onChange={e => setcourse_id(e.target.value)}
+                        required
+                      >
+                        <option value="">Select a course</option>
+                        {Courses.map(course => (
+                          <option key={course.course_id} value={course.course_id}>
+                            {course.course_name}
+                          </option>
+                        ))}
+                      </select>
                       <div className="mb-3">
                         <label
                           htmlFor="exampleFormControlTextarea1"
@@ -142,7 +168,7 @@ const MyQuizzes = () => {
                         ></textarea>
                       </div>
                       <p className="text-center">--- OR ---</p>
-                      <div className="mb-3">
+                      {/* <div className="mb-3">
                         <label htmlFor="formFile" className="form-label ">
                           Upload File
                         </label>
@@ -151,7 +177,7 @@ const MyQuizzes = () => {
                           type="file"
                           id="formFile"
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 
@@ -163,7 +189,7 @@ const MyQuizzes = () => {
                     >
                       Close
                     </button>
-                    <button type="button" className="btn btn-dark btn-custom">
+                    <button type="button" className="btn btn-dark btn-custom" onClick={createQuize}>
                       Generate
                     </button>
                   </div>
