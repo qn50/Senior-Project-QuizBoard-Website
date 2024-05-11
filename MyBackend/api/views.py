@@ -28,28 +28,6 @@ class QuizListCreate(generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
-# def get_queryset(self):
-#         course_id = self.request.query_params.get('course_id')
-
-#         if course_id is None:
-#             return Quize.objects.none()  # Return empty queryset if no course_id provided
-
-#         try:
-#             course_id = int(course_id)  # Attempt to convert to integer
-#         except ValueError:
-#             return Response({'error': 'course_id must be an integer'}, status=status.HTTP_400_BAD_REQUEST)
-
-#         return Quize.objects.filter(course_id=course_id)
-
-#     def perform_create(self, serializer):
-#         print("Received data:", self.request.data)  # Add this line
-#         course_id = self.request.data.get('course_id')
-#         try:
-#             course = Course.objects.get(pk=course_id)
-#             serializer.save(course_id=course)  # Set the course foreign key
-#         except Course.DoesNotExist:
-#             return Response({'error': 'Invalid course ID provided'}, status=status.HTTP_400_BAD_REQUEST)
-
 class QuizDelete(generics.DestroyAPIView):
     serializer_class = QuizSerializer
     permission_classes = [IsAuthenticated]

@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { useParams } from "react-router-dom";
+=======
+import { useParams, useLocation } from 'react-router-dom';
+>>>>>>> Stashed changes
 import React from "react";
 import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
@@ -9,7 +13,10 @@ import "../../css/MyQuizzes.css";
 import api from "../../api";
 
 const MyQuizzes = () => {
-  const { courseId } = useParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const courseId = queryParams.get('id');
+  
   const [Courses, setCourses] = useState([]);
   const [quizzes, setquizzes] = useState([]);
   const [quize_name, setQuize_name] = useState();
