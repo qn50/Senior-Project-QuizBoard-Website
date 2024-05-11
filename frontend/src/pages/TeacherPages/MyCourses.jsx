@@ -52,16 +52,16 @@ const MyCourses = () => {
       .catch((err) => alert(err));
   };
 
-  const onSearch = (searchText) => {
-    if (searchText === "") {
-      setFilteredCourses(Courses);
-    } else {
-      const filtered = Courses.filter((item) => {
-        return item.toLowerCase().includes(searchText.toLowerCase());
-      });
-      setFilteredCourses(filtered);
-    }
-  };
+  // const onSearch = (searchText) => {
+  //   if (searchText === "") {
+  //     setFilteredCourses(Courses);
+  //   } else {
+  //     const filtered = Courses.filter((item) => {
+  //       return item.toLowerCase().includes(searchText.toLowerCase());
+  //     });
+  //     setFilteredCourses(filtered);
+  //   }
+  // };
 
   return (
     <div

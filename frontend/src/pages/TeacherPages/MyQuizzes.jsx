@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import React from "react";
 import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
@@ -65,7 +65,7 @@ const MyQuizzes = () => {
         getQuizzes();
       })
       .catch((err) => alert(err));
-      // console.log({courseId,quize_name})TRUE
+    // console.log({courseId,quize_name})TRUE
   };
 
   // const onSearch = (searchText) => {
@@ -124,34 +124,39 @@ const MyQuizzes = () => {
                   </div>
 
                   <div className="modal-body">
-                  <span className="input-group-text btn btn-dark btn-custom bg-blue text-white mb-2">
-                            Quiz Name
-                          </span>
-                          <input
-                            type="text"
-                            aria-label="First name"
-                            className="form-control"
-                            name="quiz_name"
-                            id="quiz_name"
-                            onChange={(e) => {
-                              setQuize_name(e.target.value);
-                            }}
-                            value={quize_name}
-                            required
-                          />
+                    <span className="input-group-text btn btn-dark btn-custom bg-blue text-white mb-2">
+                      Quiz Name
+                    </span>
+                    <input
+                      type="text"
+                      aria-label="First name"
+                      className="form-control"
+                      name="quiz_name"
+                      id="quiz_name"
+                      onChange={(e) => {
+                        setQuize_name(e.target.value);
+                      }}
+                      value={quize_name}
+                      required
+                    />
 
                     <div className="container">
-                    <label htmlFor="courseSelect" className="form-label">Select Course</label>
+                      <label htmlFor="courseSelect" className="form-label">
+                        Select Course
+                      </label>
                       <select
                         className="form-select"
                         id="courseSelect"
                         value={course_id}
-                        onChange={e => setcourse_id(e.target.value)}
+                        onChange={(e) => setcourse_id(e.target.value)}
                         required
                       >
                         <option value="">Select a course</option>
-                        {Courses.map(course => (
-                          <option key={course.course_id} value={course.course_id}>
+                        {Courses.map((course) => (
+                          <option
+                            key={course.course_id}
+                            value={course.course_id}
+                          >
                             {course.course_name}
                           </option>
                         ))}
@@ -191,7 +196,11 @@ const MyQuizzes = () => {
                     >
                       Close
                     </button>
-                    <button type="button" className="btn btn-dark btn-custom" onClick={createQuize}>
+                    <button
+                      type="button"
+                      className="btn btn-dark btn-custom"
+                      onClick={createQuize}
+                    >
                       Generate
                     </button>
                   </div>
@@ -202,7 +211,7 @@ const MyQuizzes = () => {
           <div className="container"></div>
         </div>
         {/* <SearchInput onSearch={onSearch} /> */}
-        <QuizCard Quizzes={filteredQuizzes} />
+        <QuizCard Quizzes={quizzes} Courses={Courses} />
       </div>
     </div>
   );
