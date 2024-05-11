@@ -34,7 +34,7 @@ const CourseCard = ({ courses, onDelete }) => {
               </div>
             </h6>
             <h3 className="card-text py-2 ">{course.course_name}</h3>
-            <Link to="/" className=" link-dark fw-bolder">
+            <Link to={`/myQuizzes/${course.course_id}`} className="link-dark fw-bolder">
               View All Quizzes
             </Link>
           </div>

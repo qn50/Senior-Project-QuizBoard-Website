@@ -7,7 +7,7 @@ import NotFound from "./pages/TeacherPages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MyCourses from "./pages/TeacherPages/MyCourses";
 import MyQuizzes from "./pages/TeacherPages/MyQuizzes";
-import Settings from "./pages/TeacherPages/Settings"
+import Settings from "./pages/TeacherPages/Settings";
 function Logout() {
   localStorage.clear();
   return <Navigate to="/login" />;
@@ -31,7 +31,7 @@ function App() {
           }
         />
         <Route
-          path="/myQuizzes"
+          path="/myQuizzes/:courseId"
           element={
             <ProtectedRoute>
               <MyQuizzes />

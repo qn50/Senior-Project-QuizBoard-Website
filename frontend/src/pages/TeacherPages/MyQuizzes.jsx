@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import React from "react";
 import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
@@ -8,11 +9,11 @@ import "../../css/MyQuizzes.css";
 import api from "../../api";
 
 const MyQuizzes = () => {
-
+  const { courseId } = useParams();
   const [Courses, setCourses] = useState([]);
   const [quizzes, setquizzes] = useState([]);
-  const [Quize_name, setQuize_name] = useState([]);
-  const [course_id, setcourse_id] = useState([]);
+  const [quize_name, setQuize_name] = useState();
+  const [course_id, setcourse_id] = useState();
 
   const [filteredQuizzes, setFilteredQuizzes] = useState([quizzes]);
 
@@ -23,7 +24,7 @@ const MyQuizzes = () => {
 
   const getQuizzes = () => {
     api
-      .get("/api/quizzes/")
+      .get(`/api/quizzes/?course_id=${courseId}`)
       .then((res) => res.data)
       .then((data) => {
         setquizzes(data);
@@ -57,25 +58,26 @@ const MyQuizzes = () => {
   const createQuize = (e) => {
     e.preventDefault();
     api
-      .post("/api/quizzes/", { Quize_name, course_id })
+      .post("/api/quizzes/", { quize_name, course_id })
       .then((res) => {
         if (res.status === 201) alert("Quiz created!");
         else alert("Failed to make Quiz.");
         getQuizzes();
       })
       .catch((err) => alert(err));
+      // console.log({courseId,quize_name})TRUE
   };
 
-  const onSearch = (searchText) => {
-    if (searchText === "") {
-      setFilteredQuizzes(quizzes);
-    } else {
-      const filtered = quizzes.filter((item) => {
-        return item.toLowerCase().includes(searchText.toLowerCase());
-      });
-      setFilteredQuizzes(filtered);
-    }
-  };
+  // const onSearch = (searchText) => {
+  //   if (searchText === "") {
+  //     setFilteredQuizzes(quizzes);
+  //   } else {
+  //     const filtered = quizzes.filter((item) => {
+  //       return item.toLowerCase().includes(searchText.toLowerCase());
+  //     });
+  //     setFilteredQuizzes(filtered);
+  //   }
+  // };
 
   return (
     <div className="d-flex" style={{ position: "relative", overflowX: "clip" }}>
@@ -134,7 +136,7 @@ const MyQuizzes = () => {
                             onChange={(e) => {
                               setQuize_name(e.target.value);
                             }}
-                            value={Quize_name}
+                            value={quize_name}
                             required
                           />
 
@@ -199,7 +201,7 @@ const MyQuizzes = () => {
           </div>
           <div className="container"></div>
         </div>
-        <SearchInput onSearch={onSearch} />
+        {/* <SearchInput onSearch={onSearch} /> */}
         <QuizCard Quizzes={filteredQuizzes} />
       </div>
     </div>
