@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-import { useParams } from "react-router-dom";
-=======
 import { useParams, useLocation } from 'react-router-dom';
->>>>>>> Stashed changes
 import React from "react";
 import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
