@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput.jsx";
-import SideBar from "../MyCoursesPage/SideBar.jsx";
+import SideBar from "../../components/SideBar.jsx";
 import QuizCard from "../../components/QuizCard.jsx";
 import "../../css/MyQuizzes.css";
 import api from "../../api";
@@ -47,16 +47,16 @@ const MyQuizzes = () => {
       .catch((err) => alert(err));
   };
 
-  // const deleteQuiz = (id) => {
-  //   api
-  //     .delete(`/api/quizzes/delete/${id}/`)
-  //     .then((res) => {
-  //       if (res.status === 204) alert("Quiz deleted!");
-  //       else alert("Failed to delete Quiz.");
-  //       getQuizzes();
-  //     })
-  //     .catch((error) => alert(error));
-  // };
+  const deleteQuiz = (id) => {
+    api
+      .delete(`/api/quizzes/delete/${id}/`)
+      .then((res) => {
+        if (res.status === 204) alert("Quiz deleted!");
+        else alert("Failed to delete Quiz.");
+        getQuizzes();
+      })
+      .catch((error) => alert(error));
+  };
 
   const createQuize = (e) => {
     e.preventDefault();
@@ -68,19 +68,8 @@ const MyQuizzes = () => {
         getQuizzes();
       })
       .catch((err) => alert(err));
-    // console.log({courseId,quize_name})TRUE
+    
   };
-
-  // const onSearch = (searchText) => {
-  //   if (searchText === "") {
-  //     setFilteredQuizzes(quizzes);
-  //   } else {
-  //     const filtered = quizzes.filter((item) => {
-  //       return item.toLowerCase().includes(searchText.toLowerCase());
-  //     });
-  //     setFilteredQuizzes(filtered);
-  //   }
-  // };
 
   return (
     <div className="d-flex" style={{ position: "relative", overflowX: "clip" }}>
@@ -213,8 +202,7 @@ const MyQuizzes = () => {
           </div>
           <div className="container"></div>
         </div>
-        {/* <SearchInput onSearch={onSearch} /> */}
-        <QuizCard Quizzes={quizzes} Courses={Courses} />
+        <QuizCard Quizzes={quizzes} Courses={Courses} onDelete={deleteQuiz}/>
       </div>
     </div>
   );

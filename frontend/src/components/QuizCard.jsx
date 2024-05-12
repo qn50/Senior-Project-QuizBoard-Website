@@ -3,7 +3,7 @@ import React from "react";
 import { FaEllipsisH } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const QuizCard = ({ Quizzes, Courses }) => {
+const QuizCard = ({ Quizzes, Courses, onDelete }) => {
   const getCourseName = (quizID) => {
     const course = Courses.find((course) => course.course_id === quizID);
     if (course) {
@@ -36,7 +36,9 @@ const QuizCard = ({ Quizzes, Courses }) => {
                     <a
                       type="button"
                       className="dropdown-item bg-danger"
-                      onClick={() => {}}
+                      onClick={() => {
+                        onDelete(Quiz.quize_id);
+                      }}
                     >
                       Delete
                     </a>

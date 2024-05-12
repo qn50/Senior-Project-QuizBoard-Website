@@ -11,11 +11,13 @@ class QuizListCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        course_id = self.request.query_params.get('course_id')
 
-        if course_id is None:
-            return Quize.objects.none()  # Return empty queryset if no course_id provided
-        
+        course_id = self.request.query_params.get('course_id', None)
+
+        if course_id is None or course_id.lower() == 'null':
+            # No specific course_id provided, return all quizzes related to user
+            user = self.request.user
+            return Quize.objects.filter(course_id__teacher=user)
         try:
             course_id = int(course_id)  # Attempt to convert to integer
         except ValueError:
@@ -33,8 +35,7 @@ class QuizDelete(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        course = self.request.Course
-        return Quize.objects.filter(course_id=course)
+        return Quize.objects.all()
 
 
 class CourseListCreate(generics.ListCreateAPIView):

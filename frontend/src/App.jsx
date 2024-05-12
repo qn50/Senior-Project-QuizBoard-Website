@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import MyCourses from "./pages/TeacherPages/MyCourses";
 import MyQuizzes from "./pages/TeacherPages/MyQuizzes";
 import Settings from "./pages/TeacherPages/Settings";
+
 function Logout() {
   localStorage.clear();
   return <Navigate to="/login" />;
@@ -32,6 +33,14 @@ function App() {
         />
         <Route
           path="/myQuizzes/:courseId"
+          element={
+            <ProtectedRoute>
+              <MyQuizzes />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/myQuizzes/"
           element={
             <ProtectedRoute>
               <MyQuizzes />

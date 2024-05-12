@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
 import SearchInput from "../../components/SearchInput.jsx";
 import CourseCard from "../../components/CourseCard.jsx";
-import SideBar from "../MyCoursesPage/SideBar.jsx";
+import SideBar from "../../components/SideBar.jsx";
 import "../../css/MyCourses.css";
 import api from "../../api";
 
@@ -51,17 +51,6 @@ const MyCourses = () => {
       })
       .catch((err) => alert(err));
   };
-
-  // const onSearch = (searchText) => {
-  //   if (searchText === "") {
-  //     setFilteredCourses(Courses);
-  //   } else {
-  //     const filtered = Courses.filter((item) => {
-  //       return item.toLowerCase().includes(searchText.toLowerCase());
-  //     });
-  //     setFilteredCourses(filtered);
-  //   }
-  // };
 
   return (
     <div
@@ -153,7 +142,6 @@ const MyCourses = () => {
           </div>
           <div className="container"></div>
         </div>
-        {/* <SearchInput onSearch={onSearch} /> */}
         <CourseCard courses={Courses} onDelete={deleteCourse} />
       </div>
     </div>

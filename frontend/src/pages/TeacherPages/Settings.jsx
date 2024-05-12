@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SideBar from "../MyCoursesPage/SideBar.jsx";
+import SideBar from "../../components/SideBar.jsx";
 import "./../../css/Settings.css";
 import P1 from "./../../assets/Setting_P1.svg";
 import P2 from "./../../assets/Setting_P2.svg";
