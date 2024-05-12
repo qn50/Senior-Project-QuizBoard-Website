@@ -1,4 +1,4 @@
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from "react-router-dom";
 import React from "react";
 import { useState, useEffect } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
@@ -11,8 +11,8 @@ import api from "../../api";
 const MyQuizzes = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const courseId = queryParams.get('id');
-  
+  const courseId = queryParams.get("id");
+
   const [Courses, setCourses] = useState([]);
   const [quizzes, setquizzes] = useState([]);
   const [quize_name, setQuize_name] = useState();
@@ -68,12 +68,11 @@ const MyQuizzes = () => {
         getQuizzes();
       })
       .catch((err) => alert(err));
-    
   };
 
   return (
     <div className="d-flex" style={{ position: "relative", overflowX: "clip" }}>
-      <SideBar />
+      <SideBar active={"MyQuizzes"} />
       <div className="flex-grow-1 " style={{ marginLeft: "12rem" }}>
         <div className="container  my-5 px-5 width ">
           <div className="d-flex justify-content-between">
@@ -202,7 +201,7 @@ const MyQuizzes = () => {
           </div>
           <div className="container"></div>
         </div>
-        <QuizCard Quizzes={quizzes} Courses={Courses} onDelete={deleteQuiz}/>
+        <QuizCard Quizzes={quizzes} Courses={Courses} onDelete={deleteQuiz} />
       </div>
     </div>
   );

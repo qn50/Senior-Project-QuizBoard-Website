@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link , useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./../css/SideBar.css";
 import WLogo from "./../assets/WhiteLogo.svg";
 import dashBoardIcon from "./../assets/dashBoard.svg";
@@ -7,13 +7,8 @@ import magicStickIcon from "./../assets/magicStick.svg";
 import settingsIcon from "./../assets/settings.svg";
 import logoutIcon from "./../assets/logout.svg";
 
-const SideBar = () => {
-  const [activeLink, setActiveLink] = useState("My Courses");
+const SideBar = ({ active }) => {
   const navigate = useNavigate();
-
-  const handleLinkClick = (link) => {
-    setActiveLink(link);
-  };
 
   const handleLogout = () => {
     localStorage.clear(); // Clear local storage
@@ -28,11 +23,11 @@ const SideBar = () => {
           alt="QuizBoard Logo"
           className="logo ResponsiveImage px-3 mb-4"
         />
+
         <Link
           to="/MyCourses"
-          onClick={() => handleLinkClick("My Courses")}
           className={
-            activeLink === "My Courses"
+            active === "MyCourses"
               ? "active-link text-decoration-none text-white nav-element"
               : "text-decoration-none text-white nav-element"
           }
@@ -42,9 +37,8 @@ const SideBar = () => {
         </Link>
         <Link
           to="/MyQuizzes"
-          onClick={() => handleLinkClick("My Quizzes")}
           className={
-            activeLink === "My Quizzes"
+            active === "MyQuizzes"
               ? "active-link text-decoration-none text-white nav-element"
               : "text-decoration-none text-white nav-element"
           }
@@ -54,9 +48,8 @@ const SideBar = () => {
         </Link>
         <Link
           to="/Settings"
-          onClick={() => handleLinkClick("Settings")}
           className={
-            activeLink === "Settings"
+            active === "Settings"
               ? "active-link text-decoration-none text-white nav-element"
               : "text-decoration-none text-white nav-element"
           }

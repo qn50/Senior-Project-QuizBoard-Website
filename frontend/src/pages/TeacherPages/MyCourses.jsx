@@ -57,7 +57,7 @@ const MyCourses = () => {
       className="d-flex "
       style={{ position: "relative", overflowX: "clip" }}
     >
-      <SideBar />
+      <SideBar active={"MyCourses"} />
       <div className="flex-grow-1 " style={{ marginLeft: "12rem" }}>
         <div className="container  my-5 px-5 width ">
           <div className="d-flex justify-content-between">

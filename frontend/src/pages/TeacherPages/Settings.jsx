@@ -12,7 +12,7 @@ const Settings = () => {
       className="d-flex "
       style={{ position: "relative", overflowX: "clip" }}
     >
-      <SideBar />
+      <SideBar active={"Settings"} />
       <div class="d-flex p-absolute width-80 ml-14rem">
         <div
           class="nav flex-column nav-pills me-3 p-4 w-50 "
