@@ -13,7 +13,7 @@ const QuizCard = ({ Quizzes, Courses, onDelete }) => {
   };
 
   return (
-    <div className="container  my-4 px-5 d-flex flex-wrap gap-5">
+    <div className="container  my-4 px-5 d-flex flex-wrap gap-4">
       {Quizzes.map((Quiz) => (
         <div
           key={Quiz.quize_id}
