@@ -21,3 +21,9 @@ class Quize(models.Model):
 
     def __str__(self):
         return self.quize_name
+
+class Files(models.Model):
+    pdf = models.FileField(upload_to='store/pdfs/')
+
+    def __str__(self):
+        return self.pdf

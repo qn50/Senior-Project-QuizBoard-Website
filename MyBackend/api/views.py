@@ -1,8 +1,8 @@
-from .models import Course, Quize
+from .models import Course, Quize, Files
 from .serializers import UserSerializer, CourseSerializer, QuizSerializer
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from rest_framework import generics,status
+from rest_framework import generics, status, viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
@@ -82,11 +82,11 @@ class GenerateQ(APIView):
     permission_classes = [AllowAny]  
           
     def post(self, request, *args, **kwargs):
-        # You might want to pass the file and other parameters via request.data
-        file = request.data.get('file')
-        numEasy = int(request.data.get('numEasy', 5))
-        numMedium = int(request.data.get('numMedium', 5))
-        numHard = int(request.data.get('numHard', 5))
+        # You might want to pass the file and other parameters via request.data *******M******
+        file = "D:/FCIT_Courses_Notability/Semester_6/CPCS241/Chapter03.pdf"
+        numEasy = 5
+        numMedium = 5
+        numHard = 5
 
         # Assuming file is being handled correctly (you may need to handle file uploads)
         response_data = getChatGPT_response(file, numEasy, numMedium, numHard)

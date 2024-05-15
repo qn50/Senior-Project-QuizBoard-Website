@@ -70,18 +70,17 @@ const MyQuizzes = () => {
         if (res.status === 201) alert("Quiz created!");
         else alert("Failed to make Quiz.");
         getQuizzes();
+        generateQuize();
       })
       .catch((err) => alert(err));
   };
 
-  const generateQuize = (e) => {
-    e.preventDefault();
+  const generateQuize = () => {
     api
       .post("/api/chatgpt/", { file, easyQ, mediumQ, hardQ })
       .then((res) => {
-        if (res.status === 201) alert("Quiz created!");
-        else alert("Failed to make Quiz.");
-        getQuizzes();
+        if (res.status === 201) alert("Quiz generated!");
+
       })
       .catch((err) => alert(err));
   };
